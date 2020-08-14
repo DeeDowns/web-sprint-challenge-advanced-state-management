@@ -1,15 +1,39 @@
-import React, { useEffect } from 'react' 
+import React, { useState } from 'react' 
 import { connect } from 'react-redux'
+import { addSmurf } from '../store/actions/formActions'
+
+
 
 const Form = props => {
     console.log('form props', props) 
+    const [smurf, setSmurf] = useState({
+        name: '',
+        age: '',
+        height: ''
+    })
+     
+    const onChange = (event) => {
+        setSmurf({
+            ...smurf,
+            [event.target.name]: event.target.value
+        })
+    }
+
+   const onSubmit = event => {
+        event.preventDefault()
+        console.log('hi')
+        addSmurf(smurf)
+
+    }
+
+    console.log(smurf)
 
     return (
-        <form>
+        <form onClick={onSubmit}>
             <label>Name
                 <input
-                    // value={}
-                    // onChange={}
+                    value={smurf.name}
+                    onChange={onChange}
                     name='name'
                     type='text'
                     id='name'
@@ -18,8 +42,8 @@ const Form = props => {
 
             <label>Age
                 <input 
-                    // value={}
-                    // onChange={}
+                    value={smurf.age}
+                    onChange={onChange}
                     name='age'
                     type='text'
                     id='age'
@@ -28,8 +52,8 @@ const Form = props => {
 
             <label>Height (cm)
                 <input
-                    // value={}
-                    // onChange={}
+                    value={smurf.height}
+                    onChange={onChange}
                     name='height'
                     type='text'
                     id='height'
@@ -41,4 +65,12 @@ const Form = props => {
     )
 }
 
-export default Form
+const mapStateToProps = state => {
+    return {
+        smurfs: state.smurfReducer.smurfs,
+        isLoading: state.smurfReducer.isLoading,
+        error: state.smurfReducer.error
+    }
+  }
+
+export default connect(mapStateToProps, { addSmurf })(Form)

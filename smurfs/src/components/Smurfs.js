@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { fetchSmurfs } from '../store/actions/smurfActions'
 import SmurfCard from './SmurfCard'
 
 const Smurfs = props => {
-    // useEffect(() => {
-    //     props.fetchSmurfs()
-    // }, [])
+   
     const { smurfData } = props
-    console.log(smurfData)
+    // console.log(smurfData)
 
     return (
         <section>
@@ -22,14 +20,4 @@ const Smurfs = props => {
     )
 }
 
-// const mapStateToProps = state => {
-//     console.log(state)
-//     return {
-//         smurfs: state.smurfReducer.smurfs,
-//         isLoading: state.smurfReducer.isLoading,
-//         error: state.smurfReducer.error
-
-//     }
-// }
-// export default connect(mapStateToProps, { fetchSmurfs })(Smurfs)
 export default Smurfs

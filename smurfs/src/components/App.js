@@ -13,24 +13,19 @@ class App extends Component {
   
   constructor(props) {
     super(props)
+    console.log(props)
   }
 
   componentDidMount() {
     this.props.fetchSmurfs()
   }
 
-  // handleSubmit = event => {
-  //   const newSmurf = {
-  //     name: 
-  //   }
-  //   this.props.addSmurf(newSmurf)
-  // }
 
   render() {
     return (
       <div className="App">
         <h1>SMURFS! W/Redux</h1>
-        <Form addSmurf={this.props}/>
+        <Form />
         <Smurfs smurfData={this.props}/>
       </div>
     );
@@ -38,11 +33,13 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
       smurfs: state.smurfReducer.smurfs,
       isLoading: state.smurfReducer.isLoading,
-      error: state.smurfReducer.error
+      error: state.smurfReducer.error,
+      
   }
 }
 
-export default connect(mapStateToProps, { fetchSmurfs, addSmurf} )(App);
+export default connect(mapStateToProps, { fetchSmurfs, addSmurf } )(App);

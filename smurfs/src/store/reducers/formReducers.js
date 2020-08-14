@@ -1,15 +1,10 @@
 import { POST_SMURF_START, POST_SMURF_SUCCESS, POST_SMURF_FAILURE } from '../actions/formActions'
 
 const initialState = {
-    smurfs: [
-        {
-            name: 'Brainey',
-            age: 200,
-            height: '5cm',
-            id: 0
-        }
+    smurfs: [],
+    isLoading: false,
+    error: ''
 
-    ]
 }
 
 export const formReducer = (state = initialState, action) => {
@@ -17,16 +12,21 @@ export const formReducer = (state = initialState, action) => {
         case POST_SMURF_START:
             return {
                 ...state,
-                smurfs: [
-                    ...state.smurfs,
-                    {
-                        name: action.payload.name,
-                        age: action.payload.age,
-                        height: action.payload.height,
-                        id: new Date()
-                    }
-                ]
+                isLoading: true,
+                error: ''
             }
+        case POST_SMURF_SUCCESS: 
+            return {
+                ...state, 
+               smurf: [...state.smurfs, action.payload],
+                isLoading: false
+            }
+            case POST_SMURF_FAILURE:
+                return {
+                    ...state, 
+                    isLoading: false,
+                    error: action.payload
+                }
         default:
             return state
     }

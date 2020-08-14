@@ -4,10 +4,10 @@ export const POST_SMURF_START = 'POST_SMURF_START'
 export const POST_SMURF_SUCCESS = 'POST_SMURF_SUCCESS'
 export const POST_SMURF_FAILURE = 'POST_SMURF_FAILURE'
 
-export const addSmurf = () => (dispatch) => {
+export const addSmurf = (newSmurf) => (dispatch) => {
     dispatch({ type: POST_SMURF_START })
     axios
-        .post('http://localhost:3333/smurfs')
+        .post('http://localhost:3333/smurfs', newSmurf)
         .then(res => {
             console.log(res)   
             dispatch({ type: POST_SMURF_SUCCESS, payload: res.data})

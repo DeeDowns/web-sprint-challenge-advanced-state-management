@@ -3,7 +3,7 @@ import React from 'react'
 
 const SmurfCard = props => {
     const { smurf } = props
-    console.log(smurf)
+    // console.log(smurf)
 
     return (
         <div>

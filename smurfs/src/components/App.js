@@ -1,35 +1,48 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { fetchSmurfs } from '../store/actions/smurfActions'
+import { addSmurf } from '../store/actions/formActions'
 
 import "./App.css";
 
 import Smurfs from './Smurfs'
+import Form from './Form'
 
 
 class App extends Component {
   
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
+  constructor(props) {
+    super(props)
+  }
 
+  componentDidMount() {
+    this.props.fetchSmurfs()
+  }
+
+  // handleSubmit = event => {
+  //   const newSmurf = {
+  //     name: 
   //   }
-  // }
-
-  // componentDidMount() {
-  //   this.props.fetchSmurfs()
-  //   console.log(this.props.fetchSmurfs)
+  //   this.props.addSmurf(newSmurf)
   // }
 
   render() {
     return (
       <div className="App">
         <h1>SMURFS! W/Redux</h1>
-        {/* <Form /> */}
-        <Smurfs />
+        <Form addSmurf={this.props}/>
+        <Smurfs smurfData={this.props}/>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+      smurfs: state.smurfReducer.smurfs,
+      isLoading: state.smurfReducer.isLoading,
+      error: state.smurfReducer.error
+  }
+}
+
+export default connect(mapStateToProps, { fetchSmurfs, addSmurf} )(App);

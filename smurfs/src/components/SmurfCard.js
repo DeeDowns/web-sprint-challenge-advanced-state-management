@@ -2,15 +2,15 @@ import React from 'react'
 
 
 const SmurfCard = props => {
-    const { smurfData } = props
-    console.log(smurfData)
+    const { smurf } = props
+    console.log(smurf)
 
     return (
         <div>
             <h3>Smurf Card Test</h3>
-            <h4>{smurfData.name}</h4>
-            <p>{smurfData.age}</p>
-            <p>{smurfData.height}</p>
+            <h4>{smurf.name}</h4>
+            <p>{smurf.age}</p>
+            <p>{smurf.height}</p>
         </div>
     )
 }

@@ -21,15 +21,19 @@ const Form = props => {
 
    const onSubmit = event => {
         event.preventDefault()
-        console.log('hi')
-        addSmurf(smurf)
+        props.addSmurf(smurf)
+       setSmurf({
+        name: '',
+        age: '',
+        height: ''
+       })
 
     }
 
     console.log(smurf)
 
     return (
-        <form onClick={onSubmit}>
+        <form onSubmit={onSubmit}>
             <label>Name
                 <input
                     value={smurf.name}
@@ -60,7 +64,7 @@ const Form = props => {
                  />
             </label>
 
-            <button>Submit</button>
+            <button type='submit'>Submit</button>
         </form>
     )
 }

@@ -1,4 +1,5 @@
 import axios from 'axios' 
+import { FETCH_SMURFS_SUCCESS } from './smurfActions'
 
 export const POST_SMURF_START = 'POST_SMURF_START'
 export const POST_SMURF_SUCCESS = 'POST_SMURF_SUCCESS'
@@ -10,7 +11,7 @@ export const addSmurf = (newSmurf) => (dispatch) => {
         .post('http://localhost:3333/smurfs', newSmurf)
         .then(res => {
             console.log(res)   
-            dispatch({ type: POST_SMURF_SUCCESS, payload: res.data})
+            dispatch({ type: FETCH_SMURFS_SUCCESS, payload: res.data})
         })
         .catch(err => {
             console.log(err)

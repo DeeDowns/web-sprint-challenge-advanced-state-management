@@ -7,7 +7,7 @@ const SmurfCard = props => {
 
     return (
         <div>
-            <h3>Smurf Card Test</h3>
+            
             <h4>{smurf.name}</h4>
             <p>{smurf.age}</p>
             <p>{smurf.height}</p>

@@ -18,8 +18,8 @@ export const formReducer = (state = initialState, action) => {
         case POST_SMURF_SUCCESS: 
             return {
                 ...state, 
-               smurf: [...state.smurfs, action.payload],
                 isLoading: false
+            
             }
             case POST_SMURF_FAILURE:
                 return {
